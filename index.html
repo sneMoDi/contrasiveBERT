@@ -1,99 +1,604 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Your Project Name</title>
-<meta property="og:title" content=Your Project Name" />
-<meta name="twitter:title" content="Your Project Name" />
-<meta name="description" content="Your project about your cool topic described right here." />
-<meta property="og:description" content="Your project about your cool topic described right here." />
-<meta name="twitter:description" content="Your project about your cool topic described right here." />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" /> 
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<!-- bootstrap for mobile-friendly layout -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Learning Research Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body class="nd-docs">
-<div class="nd-pageheader">
- <div class="container">
- <h1 class="lead">
- <nobr class="widenobr">Your Project Name</nobr>
- <nobr class="widenobr">For CS 7150</nobr>
- </h1>
- </div>
-</div><!-- end nd-pageheader -->
+<body>
+  <header>
+    <div class="container">
+      <h1>CS:7150 Deep Learning Final Project</h1>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+      <nav id="navbar">
+        <button onclick="scrollToSection('home')">Home</button>
+        <button onclick="scrollToSection('private-investigator')">Team Members</button>
+        <button onclick="scrollToSection('archaeologist')">Archaeologist</button>
+        <button onclick="scrollToSection('diagrammer')">Working</button>
+        <button onclick="scrollToSection('future-research')">Academic Researcher</button>
+        <button onclick="scrollToSection('contact')">Contact</button>
+      </nav>
+    </div>
+  </header>
+    
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Welcome to Our Research</h2>
+            <p>Contrastive Pretraining for Sentence-Level Understanding: A BERT-Based Extension.</p>
+            <p>The Next Sentence Prediction (NSP) objective in BERT has shown limited effectiveness in capturing real-world sentence coherence. Can contrastive learning replace BERT's Next Sentence Prediction to improve sentence-level semantic representation?
+            </p>
+            <button onclick="scrollToSection('about')">Learn More</button>
+        </div>
+    </section>
+    
+    <section id="about" class="content-section">
+        <div class="about-container">
+            <h2>About the Project</h2>
+            <p class="about-text">
+                This project provides a comprehensive breakdown of the BERT paper, 
+                <strong>"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,"</strong> 
+                authored by Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova at Google AI. 
+                The project aims to analyze BERT's methodology, historical context, and real-world applications 
+                through an illustrated and interactive blog. This project builds upon the foundational BERT framework, which introduced masked language modeling (MLM) and next sentence prediction (NSP) for learning bidirectional contextual representations. While BERT achieved remarkable performance across a wide range of NLP benchmarks, the NSP objective has shown limitations in effectively modeling inter-sentence semantics. To address this, our work proposes a contrastive learning extension that replaces NSP with a sentence-level triplet loss, leveraging hard negative sampling and mean-pooled [CLS] representations passed through a projection head. Our approach improves semantic separation, as demonstrated through t-SNE visualizations and contrastive similarity tests, and is further fine-tuned and evaluated on the MNLI benchmark. 
+                We also explored token-level adaptation of BERT for Named Entity Recognition (NER) by fine-tuning on the CONLL-2003 dataset without using [MASK] tokens. This experiment achieved strong F1 scores across entity types and demonstrated that BERT can effectively generalize to sequence labeling tasks without pretrain–fine-tune token mismatches. Together, these experiments explore and extend BERT’s capabilities both at the sentence level and token level.
+            <div class="bert-animation">
+                <p class="sentence">"BERT understands natural language."</p>
+                <div class="tokenized">
+                    <span class="token">[CLS]</span>
+                    <span class="token">BERT</span>
+                    <span class="token">understands</span>
+                    <span class="token">natural</span>
+                    <span class="token">language</span>
+                    <span class="token">[SEP]</span>
+                </div>
+    
+                <div class="attention-arrows">
+                    <span class="arrow" id="arrow1">↔</span>
+                    <span class="arrow" id="arrow2">↔</span>
+                    <span class="arrow" id="arrow3">↔</span>
+                    <span class="arrow" id="arrow4">↔</span>
+                </div>
+    
+                <div class="bert-output">
+                    <span class="output">[CLS]</span>
+                    <span class="output">BERT*</span>
+                    <span class="output">understands*</span>
+                    <span class="output">natural*</span>
+                    <span class="output">language*</span>
+                    <span class="output">[SEP]</span>
+                </div>
+            </div>
+        </div></section>
 
-<div class="container">
-<div class="row">
-<div class="col justify-content-center text-center">
-<h2>An Analysis of [papername]</h2>
-<p>Describe the paper and the big question about it that interests you.</p>
-</div>
-</div>
-<div class="row">
-<div class="col">
+    
 
-<h2>Related Work; Methods; Link to Code; Experiments; Disucssion</h2>
+    <section id="private-investigator" class="private-investigator-section">
+  <div class="container">
+    <h2>Team Members</h2>
+    <div class="authors">
 
-<p>
-Scoring for your final project writeup rubric will be as follows:
-<br>
-+1: You have a good title and have identified the project team members as authors.
-<br>
-+1: Introduction poses the question
-<br>
-+1: Related work section properly cites and links and says a couple words about the paper(s) on which the work is based, and how your work relates.
-<br>
-+1: The methods you are using are described briefly and precisely.
-<br>
-+1: The aspects that distinguish your study from previous work are described clearly (e.g. what is your particular focus)
-<br>
-+1: Your analysis is solid, and you use diagrams effectively to show your main methods or results visually.
-<br>
-+1: You have created some code (e.g., link to github), demonstrating the methods.
-<br>
-+1: You include a discussion with your own opinions, questions, or perspective on your findings.
-</p>
-<h3>References</h3>
+      <a href="https://www.linkedin.com/in/snehithabarukula/" target="_blank" class="author-link">
+        <div class="author-card">
+          <img src="images/Snehitha.jpeg" alt="Snehitha">
+          <h3>Snehitha Barukula</h3>
+        </div>
+      </a>
 
-<p><a name="bottou-1990">[1]</a> <a href="https://papers.baulab.info/Bottou-1990.pdf"
-  >L&eacute;on Bottou and Patrick Gallinari.
-  <em>A framework for the cooperation of learning algorithms.</em></a>
-  Advances in neural information processing systems 3 (1990).
-</p>
+     
+        <div class="author-card">
+          <img src="images/Umar.jpeg" alt="Umar">
+          <h3>Umar Javeed Altaf</h3>
+        </div>
 
-<h2>Team Members</h2>
-                                                   
-<p>Make sure to list here is who is on the team.</p>
-
-  
-</div><!--col-->
-</div><!--row -->
-</div> <!-- container -->
-
-<footer class="nd-pagefooter">
-  <div class="row">
-    <div class="col-6 col-md text-center">
-      <a href="https://cs7150.baulab.info/">About CS 7150</a>
     </div>
   </div>
-</footer>
+</section>
 
+    
+    <!-- 🏺 ARCHAEOLOGIST Timeline Section: Evolution of NLP -->
+    <section id="archaeologist" class="timeline-section">
+    <div class="container">
+      <h2 class="section-title">🕵️ Archaeologist: Unearthing the Road to BERT</h2>
+      <h4><p>
+        BERT was the result of decades of progress from rule-based systems to statistical models to deep learning.
+        It introduced the pretraining and fine-tuning paradigm that powers today’s NLP giants like RoBERTa, ALBERT, DistilBERT, modernBERT and even GPT models.
+      </p></h4>
+      <div class="timeline">
+  
+        <!-- Era 1 -->
+        <div class="timeline-step">
+          <div class="dot"></div>
+          <div class="content">
+            <h3>🪨 Prehistoric Era of NLP: Rule-Based Systems</h3>
+            <ul>
+              <li>Used handcrafted grammar/syntax rules.</li>
+              <li>Struggled to generalize across domains.</li>
+              <li>Couldn’t learn as everything was hardcoded.</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Era 2 -->
+        <div class="timeline-step">
+          <div class="dot"></div>
+          <div class="content">
+            <h3>📊 Statistical Age (1990s–early 2010s)</h3>
+            <ul>
+              <li><strong>N-gram models:</strong> Used fixed window contexts (e.g., bigrams).</li>
+              <li><strong>Word embeddings:</strong> Word2Vec (2013), GloVe (2014).</li>
+              <li>Vectors were static, “bank” meant the same in every context.</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Era 3 -->
+        <div class="timeline-step">
+          <div class="dot"></div>
+          <div class="content">
+            <h3>🧠 Deep Learning Boom</h3>
+            <ul>
+              <li><strong>LSTMs/GRUs:</strong> Captured sequence info, but slow & hard to scale.</li>
+              <li><strong>Transformers (2017):</strong> “Attention is All You Need” changed everything: parallel, scalable, context-rich.</li>
+              <li><strong>ELMo (2018):</strong> Brought contextual embeddings using bidirectional LSTMs.</li>
+              <li><strong>GPT (2018):</strong> First Transformer-based model with left-to-right training.</li>
+            </ul>
+          </div>
+        </div>
+  
+        <!-- Era 4 -->
+        <div class="timeline-step">
+          <div class="dot"></div>
+          <div class="content">
+            <h3>🚀 BERT (2018)</h3>
+            <ul>
+              <li><strong>Masked Language Modeling (MLM):</strong> Learn from both left and right context.</li>
+              <li><strong>Next Sentence Prediction (NSP):</strong> Learn relationships between sentences.</li>
+              <li>Set new <strong>SOTA</strong> on 11 NLP benchmarks.</li>
+              <li>Enabled plug-and-play fine-tuning across NLP tasks.</li>
+            </ul>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+    </section>
+
+    <section id="diagrammer" class="diagrammer-section">
+      <div class="container">
+        <h2 class="section-title">How BERT Works? How is our model different?</h2>
+        <p class="diagram-intro">
+          The original BERT model, as proposed by Devlin et al., is pre-trained using two unsupervised objectives: Masked Language Modeling (MLM), where random tokens in a sentence are masked and predicted, and Next Sentence Prediction (NSP), where the model classifies whether a given sentence B logically follows sentence A. While MLM enables BERT to learn rich token-level representations, the NSP objective has been criticized for offering limited value in capturing meaningful inter-sentence relationships, often relying on superficial co-occurrence patterns, as later discussed by Liu et al. in RoBERTa.
+
+          In our work, we replace the NSP objective with a contrastive learning approach inspired by Gao et al. (SimCSE), which learns to embed semantically similar sentences closer together and dissimilar ones farther apart using a triplet loss over [CLS] representations. We enhance this by incorporating mean pooling (instead of relying solely on the [CLS] token), adding a projection head to shape the embedding space, and introducing hard negatives drawn from different documents to boost contrastive separation.
+          
+          This results in a more semantically aware and discriminative sentence encoder, which generalizes better across downstream tasks like Natural Language Inference (MNLI), outperforming models trained with the original NSP objective.
+                    
+        </p>
+      <p class ="diagram-intro"> As an additional experiment, we fine-tuned a pretrained BERT-base-cased model for the task of Named Entity Recognition (NER) using the CoNLL-2003 dataset, which includes annotated sequences for entities such as persons (PER), organizations (ORG), locations (LOC), and miscellaneous (MISC). Building on the foundational work by Devlin et al. (2019), which introduced BERT with Masked Language Modeling (MLM) and Next Sentence Prediction (NSP), our approach eliminates reliance on the [MASK] token entirely to avoid the pretraining–fine-tuning mismatch often seen in token classification tasks. Inspired by efforts like Akbik et al. (2018) and Souza et al. (2020), we adopt BERT’s 12-layer bidirectional transformer encoder and apply a simple linear classification head for token-level prediction, rather than more complex alternatives like CRF. The model was trained and evaluated directly on real, unmasked text sequences and achieved an overall F1 score of 93%, with especially strong results on person and location entities. This aligns with recent trends such as Yamada et al. (2020) and Wang et al. (2021), which explore more natural and efficient ways to adapt large language models for downstream tasks like NER.</p>
+
+    
+        <!-- Step-by-step Breakdown -->
+        <div class="diagram-steps">
+          <div class="diagram-card">
+            <h3>Step 1: Unlabeled Text Corpus</h3>
+            <p><strong>Input:</strong> Input: Wikitext-2 (Wikipedia-based dataset)
+              Used to extract sentence pairs for learning inter-sentence relationships.
+              
+            <p>Sentences are split into anchor, positive, and hard negative pairs from the same or different articles.</p>
+            .</p>
+          </div>
+    
+          <div class="diagram-card">
+            <h3>Step 2: Pre-training Tasks</h3>
+            <ul>
+              <li>Replaces NSP with a Triplet Contrastive Loss.</li>
+                <p>Model learns to bring anchor & positive close, push hard negatives away in embedding space.</p>
+
+            </ul>
+          </div>
+    
+          <div class="diagram-card">
+            <h3>Step 3: Modified BERT Encoder (ContrastiveBERT)</h3>
+            <p>Based on BertModel (no classification head).
+
+              <li>Uses mean pooling over tokens instead of just [CLS].</li>
+              <li>Adds a projection MLP head: </li></p>
+          </div>
+    
+          <div class="diagram-card">
+            <h3>Step 4: Contrastive Training</h3>
+            <li>Sentences are encoded independently.</li>
+            <li>Triplet loss is computed between anchor, positive, and negative embeddings using cosine similarity.</li>
+            <li>Helps the model learn semantic separation.</li>
+
+
+          </div>
+    
+          <div class="diagram-card">
+            <h3>Step 5: Visualization & Testing</h3>
+            <ul>
+              <li> t-SNE plots show embedding clusters.</li>
+              <li>Sentence-pair similarity is tested using cosine similarity.</li>
+              <li>More meaningful separation than original NSP-based BERT.</li>
+            </ul>
+          </div>
+    
+          <div class="diagram-card">
+            <h3>Step 6: Fine-tuning on MNLI </h3>
+            <li>Encoded sentence representations passed to a classifier head.
+              </li>
+              <li>Fine-tuned on MNLI for NLI task (entailment, contradiction, neutral).</li>
+              <li>Improves performance by starting from better embeddings.</li>
+          </div>
+        </div>
+    
+        <!-- Visual: Architecture Diagram -->
+        <div class="diagram-image">
+          <img src="images/bert_flowchart.jpeg" alt="BERT architecture flowchart">
+          <p class="caption">Figure 1: Simplified training and fine-tuning pipeline of Orginal BERT.</p>
+        </div>
+      </div>
+
+      <div class="diagram-image">
+        <img src="images/BERT.png" alt="BERT architecture">
+        <p class="caption">Figure 2: Overall pre-training and fine-tuning procedures for BERT. Devlin et al.
+
+        </p>
+        </div>
+    </div>
+
+    <div class="diagram-image">
+      <img src="images/flow2.png" alt="ContrasiveBERT architecture">
+      <p class="caption">Figure 3: Simplified training and fine-tuning pipeline of Contrasive BERT.
+
+      </p>
+      </div>
+  </div>
+
+    <div class="diagram-image">
+      <img src="images/cotrasive bert.png" alt="BERT WORKING">
+      <p class="caption">Figure 4: This figure shows how sentence embeddings are generated using BERT with mean pooling and an MLP projection head before applying contrastive loss.</p>
+    </div>
+  </div>
+     
+    <div class="bert-demo">
+      <h2 class="demo-title">🔍 BERT in Action: Demo Insights <a href ="https://colab.research.google.com/drive/16igpPZoV9xrM5t4-0i4oJ5ZoP7asFval?usp=sharing"> Colab Notebook</a></h2>
+      <p class="demo-description">
+          To better understand BERT’s capabilities, we ran multiple experiments to analyze its pre-trained behavior and how it responds to different sentence pairs using <strong>Next Sentence Prediction (NSP)</strong>.
+      </p>
+  
+      <!-- Demo Results Card Grid -->
+      <div class="demo-grid">
+  
+          <!-- NSP Correct -->
+          <div class="demo-card correct">
+              <h3>NSP: Correct Prediction without Mean Pooling, Projection Head and Triplet Loss </h3>
+              <p><strong>Sentence A:</strong> "The sun is hot."</p> 
+              <p><strong>Sentence B:</strong> "It provides light and warmth."</p>
+              <p><strong>Original BERT NSP Score (IsNext):</strong>  1.0000
+               <p><strong>Contrastive BERT Cosine Similarity:</strong></p> 0.9651</p>
+          </div>
+  
+          <!-- NSP False Positive -->
+          <div class="demo-card correct">
+            <h3>NSP: Correct Prediction after Mean Pooling, Projection Head and Triplet Loss </h3>
+            <p><strong>Sentence A:</strong> "Birds build nests."</p> 
+            <p><strong>Sentence B:</strong> "Doctors read journals."</p>
+            <p><strong>Original BERT NSP Score (IsNext):</strong>  1.0000
+             <p><strong>Contrastive BERT Cosine Similarity:</strong></p> 0.5733</p>
+          </div>
+
+          <div class="diagram-image2">
+            <img src="images/tSNE.png" alt="tSNE">
+          </div>
+
+          <div class="diagram-image2">
+            <img src="images/NER.png" alt="tSNE">
+          </div>
+
+          <div class="diagram-image2">
+            <img src="images/confusion_matrix.png" alt="cm">
+          </div>
+
+          <div class="diagram-image2">
+            <img src="images/bertOutput.png" alt="cm">
+          </div>
+          <div class="diagram-image2">
+            <img src="images/bertOutput1.png" alt="cm">
+          </div>
+          <div class="diagram-image2">
+            <img src="images/workflow.png" alt="cm">
+          </div>
+      </div>
+  </div>
+
+</section>
+
+<section id="comparison" class="comparison-section">
+  <div class="container">
+    <h2>Our Work vs Existing Models</h2>
+    <p class="table-intro">
+      The table below compares our proposed contrastive BERT model with well-established baselines such as 
+      <strong>BERT (Devlin et al., 2019)</strong>, <strong>RoBERTa (Liu et al., 2019)</strong>, 
+      <strong>SimCSE (Gao et al., 2021)</strong>, and a modern large-scale transformer ("ModernBERT") Zhang et al.,.
+      We highlight architectural differences, sentence-level objectives, contrastive learning strategies, and 
+      performance-focused optimizations to show how our model prioritizes semantic separation and fine-tuning efficiency.
+    </p>
+
+    <div class="table-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>BERT<br>(Devlin et al., 2019)</th>
+            <th>RoBERTa<br>(Liu et al., 2019)</th>
+            <th>SimCSE<br>(Gao et al., 2021)</th>
+            <th>ModernBERT</th>
+            <th><strong>Our Work</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sentence-Level Objective</td>
+            <td>NSP</td>
+            <td>None</td>
+            <td>Contrastive (Dropout/NLI)</td>
+            <td>None (pure MLM)</td>
+            <td>✅ Triplet Loss (Anchor + Hard Negative)</td>
+          </tr>
+          <tr>
+            <td>Pooling</td>
+            <td>[CLS] token</td>
+            <td>[CLS] token</td>
+            <td>[CLS] token</td>
+            <td>Standard output embeddings</td>
+            <td>✅ Mean Pooling over tokens</td>
+          </tr>
+          <tr>
+            <td>Negatives</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>Batch / Random Negatives</td>
+            <td>N/A</td>
+            <td>✅ Hard Negatives from other documents</td>
+          </tr>
+          <tr>
+            <td>Projection Head</td>
+            <td>None</td>
+            <td>None</td>
+            <td>2-layer MLP</td>
+            <td>None</td>
+            <td>✅ MLP: Linear(768→256) → ReLU → Linear(256→128)</td>
+          </tr>
+          <tr>
+            <td>Used for MNLI</td>
+            <td>✅ Yes</td>
+            <td>✅ Yes</td>
+            <td>✅ Yes</td>
+            <td>✅ Yes</td>
+            <td>✅ Yes (Fine-tuned with classifier)</td>
+          </tr>
+          <tr>
+            <td>Base Architecture</td>
+            <td>BERT</td>
+            <td>RoBERTa</td>
+            <td>BERT</td>
+            <td>Enhanced Transformer (RoPE + GeGLU)</td>
+            <td>BERT</td>
+          </tr>
+          <tr>
+            <td>Pretraining Tasks</td>
+            <td>MLM + NSP</td>
+            <td>MLM (No NSP)</td>
+            <td>MLM + Contrastive</td>
+            <td>MLM only (30% masking)</td>
+            <td>✅ MLM + Triplet Loss</td>
+          </tr>
+          <tr>
+            <td>Contrastive Training</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes (Dropout-based)</td>
+            <td>No</td>
+            <td>✅ Yes (Triplet loss with hard negatives)</td>
+          </tr>
+          <tr>
+            <td>Sequence Length</td>
+            <td>512</td>
+            <td>512</td>
+            <td>512</td>
+            <td>8192 (Extended)</td>
+            <td>64</td>
+          </tr>
+          <tr>
+            <td>Tokenizer</td>
+            <td>BERT Tokenizer</td>
+            <td>BERT Tokenizer</td>
+            <td>BERT Tokenizer</td>
+            <td>Custom BPE</td>
+            <td>BERT Tokenizer</td>
+          </tr>
+          <tr>
+            <td>Data Size</td>
+            <td>Wikipedia + BookCorpus</td>
+            <td>Large corpus, no NSP</td>
+            <td>Small (MNLI + Wikipedia)</td>
+            <td>2T tokens, diverse sources</td>
+            <td>Small subset (Wikitext + MNLI)</td>
+          </tr>
+          <tr>
+            <td>Evaluation Benchmarks</td>
+            <td>GLUE (MNLI)</td>
+            <td>GLUE</td>
+            <td>GLUE, STS tasks</td>
+            <td>GLUE, BEIR, CodeSearchNet, StackQA</td>
+            <td>GLUE (MNLI), similarity tasks</td>
+          </tr>
+          <tr>
+            <td>Focus</td>
+            <td>Bidirectional context modeling</td>
+            <td>Corpus scaling + robust pretraining</td>
+            <td>Sentence embedding training</td>
+            <td>Efficiency in IR/NLU tasks</td>
+            <td>✅ Sentence-level semantics via contrastive learning</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+
+    <section id="future-research" class="future-research-section">
+    <div class="container">
+            <h2 class="section-title">Future Research Directions</h2>
+
+            <div class="container">
+              <div class="flowchart">
+                <div class="node" onclick="showLinks('context')">Expanding Context</div>
+                <div class="node" onclick="showLinks('multimodal')">Multimodal BERT</div>
+                <div class="node" onclick="showLinks('efficient')">Efficient BERT</div>
+                <div class="node" onclick="showLinks('crosslang')">Cross-Language</div>
+                <div class="node" onclick="showLinks('ethics')">Ethics & Interpretability</div>
+              </div>
+          
+              <div id="context" class="link-container">
+                <a href="https://arxiv.org/abs/2004.05150" target="_blank">Longformer: The Long-Document Transformer — Beltagy et al.</a><br>
+                <a href="https://aclanthology.org/P18-1034/" target="_blank">Hierarchical Attention Networks — Yang et al.</a>
+                <p class="addition">Building on this, a potential academic project could explore hierarchical BERT models that chunk and encode long documents, then reassemble the segments using a global attention layer. This would allow BERT to tackle full-length articles or reports, a clear step forward from its sentence-level focus.</p>
+              </div>
+              <div id="multimodal" class="link-container">
+                <a href="https://arxiv.org/abs/1908.02265" target="_blank">ViLBERT — Lu et al.</a><br>
+                <a href="https://arxiv.org/abs/1908.07490" target="_blank">LXMERT — Tan and Bansal</a>
+                <p class="addition">This opens doors to BERT-inspired models that process visual and auditory data alongside text. A promising research direction would be developing a unified encoder that captures cross-modal alignments for applications like image captioning or video Q&A.</p>
+
+              </div>
+              <div id="efficient" class="link-container">
+                <a href="https://arxiv.org/abs/1905.11946" target="_blank">DistilBERT — Sanh et al.</a><br>
+                <a href="https://arxiv.org/abs/2002.08258" target="_blank">TinyBERT — Jiao et al.</a>
+                <p class="addition">Inspired by these works, a natural academic project would involve optimizing BERT through distillation, quantization, and pruning techniques for low-resource environments like smartphones or edge devices—where speed and memory matter most.</p>
+
+              </div>
+              <div id="crosslang" class="link-container">
+                <a href="https://arxiv.org/abs/1901.07291" target="_blank">mBERT</a><br>
+                <a href="https://arxiv.org/abs/2004.11867" target="_blank">XLM-R — Conneau et al.</a>
+                <p class="addition">This motivates future research into multilingual BERT models trained using meta-learning techniques to better generalize in low-resource language settings, especially for zero-shot translation and semantic understanding.</p>
+
+              </div>
+              <div id="ethics" class="link-container">
+                <a href="https://arxiv.org/abs/1906.08935" target="_blank">Interpretability in Transformers</a><br>
+                <a href="https://arxiv.org/abs/2103.03453" target="_blank">Bias in NLP Models</a>
+                <p class="addition">Given the societal impact of large language models, an important academic extension would be to explore how interpretability tools and fairness-aware training strategies can reduce bias in BERT's predictions and make its decisions more transparent.</p>
+
+              </div>
+            </div>
+    
+            
+            <div class="research-text">
+                <p><strong>Expanding BERT's Context Window:</strong> While BERT is effective at understanding sentence-level context, future research could explore expanding its context window to handle entire documents. A modified model could incorporate hierarchical attention mechanisms to capture broader textual dependencies.</p>
+    
+                <p><strong>Multimodal BERT:</strong> An exciting avenue of research would be extending BERT into multimodal learning, integrating text with vision and audio. A "VisualBERT" or "Multimodal-BERT" could be trained to jointly understand text and images for applications in automated video summarization, image captioning, and human-computer interaction.</p>
+    
+                <p><strong>Memory-Efficient BERT Variants:</strong> While BERT delivers state-of-the-art results, its computational cost remains a challenge. Research could focus on developing efficient variants of BERT using model pruning, distillation, and quantization techniques to make deployment feasible on edge devices and mobile applications.</p>
+    
+                <p><strong>Cross-Language Adaptability:</strong> Current multilingual BERT models still struggle with zero-shot language understanding in low-resource languages. Future work could focus on improving BERT’s transfer learning capabilities by incorporating meta-learning techniques or unsupervised domain adaptation.</p>
+    
+                <p><strong>Ethical and Interpretability Studies:</strong> As BERT is increasingly used in real-world applications, understanding its biases and decision-making processes is critical. Future research could explore ways to enhance interpretability and develop fairness-aware training methods to mitigate unintended biases.</p>
+    
+                <p>Personally, I found that explicitly modeling inter-sentence relationships with hard negatives not only made the model more interpretable but also opened new directions for understanding sentence semantics beyond simple binary classification. One question that emerged from my work is whether combining contrastive objectives with span-level pretraining could further enhance both sentence and token-level understanding. This experiment strengthened my interest in representation learning and leaves room for future exploration in hybrid objectives and multilingual settings.By addressing these research challenges, future iterations of BERT could become more efficient, adaptable, and versatile, paving the way for broader AI applications in healthcare, education, and creative industries.</p>
+            </div>
+    
+    </div>
+  </section>
+  <section id="references" class="reference-section">
+    <div class="container">
+      <h2>References</h2>
+      <ol class="ieee-list">
+        <li>
+          J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, 
+          “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,” 
+          in <em>Proc. NAACL-HLT</em>, 2019, pp. 4171–4186. 
+          <a href="https://arxiv.org/abs/1810.04805" target="_blank">[Online]</a>
+        </li>
+        <li>
+          Y. Liu et al., “RoBERTa: A Robustly Optimized BERT Pretraining Approach,” 
+          <em>arXiv preprint arXiv:1907.11692</em>, 2019.
+        </li>
+        <li>
+          T. Gao, X. Yao, and D. Chen, “SimCSE: Simple Contrastive Learning of Sentence Embeddings,” 
+          in <em>Proc. ICLR</em>, 2021. 
+          <a href="https://arxiv.org/abs/2104.08821" target="_blank">[Online]</a>
+        </li>
+        <li>
+          M. Joshi et al., “SpanBERT: Improving Pre-training by Representing and Predicting Spans,” 
+          in <em>Trans. Assoc. Comput. Linguist. (TACL)</em>, vol. 8, 2020, pp. 64–77.
+        </li>
+        <li>
+          A. Akbik, D. Blythe, and R. Vollgraf, “Contextual String Embeddings for Sequence Labeling,” 
+          in <em>Proc. COLING</em>, 2018, pp. 1638–1649.
+        </li>
+        <li>
+          F. N. Souza, R. Nogueira, and R. Lotufo, “BERTimbau: Pretrained BERT Models for Brazilian Portuguese,” 
+          <em>arXiv preprint arXiv:2009.10683</em>, 2020.
+        </li>
+        <li>
+          I. Yamada et al., “LUKE: Deep Contextualized Entity Representations with Entity-aware Self-attention,” 
+          in <em>Proc. EMNLP</em>, 2020, pp. 6442–6454.
+        </li>
+        <li>
+          A. Wang, I. F. Tenney, and A. Das, “Improving Named Entity Recognition in Low-Resource Languages via Cross-lingual Transfer,” 
+          in <em>Proc. EMNLP</em>, 2021.
+        </li>
+        <li>
+          M. Peters et al., “Deep contextualized word representations,” in <em>Proc. NAACL-HLT</em>, 2018. 
+          <a href="https://arxiv.org/abs/1802.05365" target="_blank">[Online]</a>
+        </li>
+        <li>
+          A. Vaswani et al., “Attention is All You Need,” in <em>Proc. NeurIPS</em>, 2017. 
+          <a href="https://arxiv.org/abs/1706.03762" target="_blank">[Online]</a>
+        </li>
+        <li>
+          A. Radford et al., “Improving Language Understanding by Generative Pre-training,” OpenAI, 2018. 
+          <a href="https://openai.com/research/language-unsupervised" target="_blank">[Online]</a>
+        </li>
+        <li>
+          Y. Zhang et al., “ModernBERT: Scaling and Simplifying Pretraining for Language Understanding,” 
+          <em>arXiv preprint arXiv:2310.16944</em>, 2023. 
+          <a href="https://arxiv.org/abs/2310.16944" target="_blank">[Online]</a>
+        </li>
+        <li>
+          T. Mikolov et al., “Efficient Estimation of Word Representations in Vector Space,” 
+          <em>arXiv preprint arXiv:1301.3781</em>, 2013. 
+          <a href="https://arxiv.org/abs/1301.3781" target="_blank">[Online]</a>
+        </li>
+        <li>
+          J. Pennington, R. Socher, and C. D. Manning, “GloVe: Global Vectors for Word Representation,” 
+          in <em>Proc. EMNLP</em>, 2014. 
+          <a href="https://aclanthology.org/D14-1162/" target="_blank">[Online]</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+  
+
+    
+    
+    <section id="contact" class="content-section">
+        <div class="container">
+            
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>barukula.s@northeastern.edu | altaf.u@northeastern.edu </p>
+            <p> CS 7150 Spring 2025 Research Project. &copy; All rights reserved.</p>
+        </div>
+    </footer>
 </body>
-<script>
-$(document).on('click', '.clickselect', function(ev) {
-  var range = document.createRange();
-  range.selectNodeContents(this);
-  var sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
-});
-// Google analytics below.
-window.dataLayer = window.dataLayer || [];
-</script>
 </html>
