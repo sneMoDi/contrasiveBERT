@@ -44,6 +44,8 @@
                 The project aims to analyze BERT's methodology, historical context, and real-world applications 
                 through an illustrated and interactive blog. This project builds upon the foundational BERT framework, which introduced masked language modeling (MLM) and next sentence prediction (NSP) for learning bidirectional contextual representations. While BERT achieved remarkable performance across a wide range of NLP benchmarks, the NSP objective has shown limitations in effectively modeling inter-sentence semantics. To address this, our work proposes a contrastive learning extension that replaces NSP with a sentence-level triplet loss, leveraging hard negative sampling and mean-pooled [CLS] representations passed through a projection head. Our approach improves semantic separation, as demonstrated through t-SNE visualizations and contrastive similarity tests, and is further fine-tuned and evaluated on the MNLI benchmark. 
                 We also explored token-level adaptation of BERT for Named Entity Recognition (NER) by fine-tuning on the CONLL-2003 dataset without using [MASK] tokens. This experiment achieved strong F1 scores across entity types and demonstrated that BERT can effectively generalize to sequence labeling tasks without pretrain–fine-tune token mismatches. Together, these experiments explore and extend BERT’s capabilities both at the sentence level and token level.
+
+                <strong>Acknowledgment:</strong> I would like to thank Professor David Bau for his insightful lectures and valuable feedback, which greatly shaped the direction and clarity of this project.
             <div class="bert-animation">
                 <p class="sentence">"BERT understands natural language."</p>
                 <div class="tokenized">
@@ -71,7 +73,8 @@
                     <span class="output">[SEP]</span>
                 </div>
             </div>
-        </div></section>
+        </div>
+      </section>
 
     
 
@@ -265,9 +268,13 @@
   </div>
      
     <div class="bert-demo">
-      <h2 class="demo-title">🔍 BERT in Action: Demo Insights <a href ="https://colab.research.google.com/drive/16igpPZoV9xrM5t4-0i4oJ5ZoP7asFval?usp=sharing"> Colab Notebook</a></h2>
+      <h2 class="demo-title">🔍 BERT in Action: Demo Insights <a href ="https://colab.research.google.com/drive/16igpPZoV9xrM5t4-0i4oJ5ZoP7asFval?usp=sharing"> Colab Notebook contrasiveBERT</a> , <a href="https://colab.research.google.com/drive/1jbS0_wCSIdggLbp0l44lnKG02kr9rGz9?usp=sharing">NER Prediction</a></h2>
       <p class="demo-description">
-          To better understand BERT’s capabilities, we ran multiple experiments to analyze its pre-trained behavior and how it responds to different sentence pairs using <strong>Next Sentence Prediction (NSP)</strong>.
+          To better understand BERT’s capabilities, we ran multiple experiments to analyze its pre-trained behavior and how it responds to different sentence pairs using <strong>Next Sentence Prediction (NSP)</strong> and <strong>contrasiveBERT</strong>.
+      </p>
+      <p class="demo-description">The comparison showcases how our contrastive BERT model, enhanced with mean pooling, a projection head, and triplet loss, outperforms the original BERT model in distinguishing semantically coherent sentence pairs. As shown in the highlighted examples, the original BERT model assigns a high NSP score (1.0) to nearly all pairs, even when the two sentences are semantically unrelated (e.g., “Birds build nests.” vs. “Doctors read journals.”). In contrast, our model produces more context-aware cosine similarity scores—lower for mismatched pairs and higher for genuinely related ones. This indicates that our model better captures sentence-level semantics and is more robust against superficial co-occurrence. The t-SNE plot further illustrates this improvement, revealing tighter clustering of similar sentence pairs, and better separation of dissimilar ones, based on the learned embeddings.        
+        </p>
+      <p class="demo-description"> Our model’s generalization is validated through downstream evaluations. The MNLI confusion matrix highlights balanced classification performance across entailment, neutral, and contradiction classes—showing strong adaptation to NLI tasks after fine-tuning. Furthermore, our Named Entity Recognition (NER) module, which reuses the pretrained encoder, achieves industry-grade scores with an overall F1 of 93%, including 96% on PER entities and 90.9% on ORG. These results confirm that the enriched sentence representations produced by our contrastive objective lead to improved performance not only on semantic similarity tasks but also on practical applications like NER. Together, these findings underscore the effectiveness of replacing NSP with contrastive training and demonstrate the broader utility of our model across multiple NLP benchmarks.
       </p>
   
       <!-- Demo Results Card Grid -->
@@ -293,24 +300,30 @@
 
           <div class="diagram-image2">
             <img src="images/tSNE.png" alt="tSNE">
+            <p class="caption">Figure 5: t-SNE visualization showing better separation of sentence embeddings.</p>
           </div>
 
-          <div class="diagram-image2">
+          <div class="diagram-image">
             <img src="images/NER.png" alt="tSNE">
+            <p class="caption">Figure 6: NER predictions powered by our model achieve excellent entity-level F1 scores.</p>
           </div>
 
           <div class="diagram-image2">
             <img src="images/confusion_matrix.png" alt="cm">
+            <p class="caption">Figure 7: Balanced performance across entailment, neutral, and contradiction labels after MNLI fine-tuning.</p>
           </div>
 
-          <div class="diagram-image2">
+          <div class="diagram-image">
             <img src="images/bertOutput.png" alt="cm">
+            <p class="caption">Figure 8: Contrastive BERT yields more nuanced similarity scores across varied sentence pairs. </p>
           </div>
-          <div class="diagram-image2">
+          <div class="diagram-image">
             <img src="images/bertOutput1.png" alt="cm">
+            <p class="caption">Figure 9: Console demo comparing BERT’s NSP vs. contrastive scores for real-world sentence inputs.</p>
           </div>
-          <div class="diagram-image2">
+          <div class="diagram-image">
             <img src="images/workflow.png" alt="cm">
+            <p class="caption">Figure 10: Contrastive BERT training pipeline with hard negatives and triplet loss for semantically rich sentence embeddings.</p>
           </div>
       </div>
   </div>

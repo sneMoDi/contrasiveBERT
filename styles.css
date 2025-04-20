@@ -5,7 +5,7 @@ body {
     padding: 0;
     background-color: #ffffff;
     color: #333;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 /* Header Styles */
@@ -168,8 +168,8 @@ h1 {
 }
 
 .demo-description {
-    text-align: center;
-    max-width: 800px;
+    text-align: justify;
+    max-width: 1200px;
     margin: 0 auto 30px;
     font-size: 1.1em;
     line-height: 1.6;
@@ -423,12 +423,12 @@ h1 {
 
 /* Research Text Below Yellow Box */
 .research-text {
-    width: 80%;
     font-size: 16px;
     line-height: 1.6;
     margin: 40px auto 0;
     text-align: justify;
     font-size: 1.2em;
+    max-width: 1200px;
 }
 
 /* Responsive */
@@ -711,9 +711,10 @@ h1 {
   .ieee-list {
     font-size: 0.98em;
     line-height: 1.8;
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     padding-left: 30px;
+    text-align: justify;
   }
   
   .ieee-list li {
